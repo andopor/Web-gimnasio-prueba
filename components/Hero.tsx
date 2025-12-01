@@ -31,7 +31,7 @@ const Hero: React.FC = () => {
         
         <p className="text-slate-300 text-lg md:text-xl mb-10 max-w-2xl mx-auto leading-relaxed">
           Formación profesional y acondicionamiento físico. 
-          Clases de Fitness, Musicales y Postural impartidas por profesionales.
+          Clases de Fitness, Musicales, Hidrocinesia y Postural impartidas por profesionales.
         </p>
         
         <div className="flex flex-col sm:flex-row gap-5 justify-center items-center">
@@ -49,7 +49,7 @@ const Hero: React.FC = () => {
             <p className="text-slate-500 text-sm uppercase tracking-wider font-semibold mt-1">Ciclo Superior</p>
           </div>
           <div className="text-center group">
-            <p className="text-3xl md:text-4xl font-black text-white group-hover:text-brand-blue transition-colors">3</p>
+            <p className="text-3xl md:text-4xl font-black text-white group-hover:text-brand-blue transition-colors">4</p>
             <p className="text-slate-500 text-sm uppercase tracking-wider font-semibold mt-1">Disciplinas</p>
           </div>
           <div className="text-center group">

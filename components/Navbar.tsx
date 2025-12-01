@@ -54,7 +54,7 @@ const Navbar: React.FC = () => {
              {/* Replace src with your local file if needed */}
              <div className="h-14 w-14 bg-white/10 rounded-full flex items-center justify-center overflow-hidden border-2 border-brand-blue">
                 <img 
-                  src="https://www.edu.xunta.gal/centros/iesmariasolino/system/files/u1/logo_csaf.png" 
+                  src="https://1drv.ms/i/c/4531d83c907da731/IQD9_wFdE9xdRKaki8nmxeG7AdYfIV_nE_AXcSAl66ORhkI" 
                   alt="CSAF Logo" 
                   className="h-full w-full object-contain p-1"
                   onError={(e) => {

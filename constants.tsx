@@ -6,6 +6,7 @@ import { DailySchedule, FeatureItem, PricingPlan } from './types';
 // Fitness -> Roberto A.
 // Musicales -> Vanessa R.
 // Postural -> Antonio D.
+// Hidrocinesia -> Merce J.
 
 export const SCHEDULE_DATA: DailySchedule = {
   "Lunes": [
@@ -17,6 +18,7 @@ export const SCHEDULE_DATA: DailySchedule = {
   "Martes": [
     { time: "09:30", class: "Fitness", trainer: "Roberto A.", difficulty: "Medio" },
     { time: "11:00", class: "Musicales", trainer: "Vanessa R.", difficulty: "Medio" },
+    { time: "12:30", class: "Hidrocinesia", trainer: "Merce J.", difficulty: "Bajo" },
     { time: "17:00", class: "Postural", trainer: "Antonio D.", difficulty: "Bajo" },
     { time: "19:00", class: "Fitness", trainer: "Roberto A.", difficulty: "Alto" },
   ],
@@ -29,6 +31,7 @@ export const SCHEDULE_DATA: DailySchedule = {
   "Jueves": [
     { time: "09:00", class: "Fitness", trainer: "Roberto A.", difficulty: "Medio" },
     { time: "11:00", class: "Fitness", trainer: "Roberto A.", difficulty: "Alto" },
+    { time: "16:00", class: "Hidrocinesia", trainer: "Merce J.", difficulty: "Bajo" },
     { time: "17:30", class: "Postural", trainer: "Antonio D.", difficulty: "Bajo" },
     { time: "19:30", class: "Musicales", trainer: "Vanessa R.", difficulty: "Medio" },
   ],
@@ -49,7 +52,7 @@ export const FEATURES_DATA: FeatureItem[] = [
   { 
     icon: <Users className="h-8 w-8 text-brand-blue" />, 
     title: "Actividades Dirigidas", 
-    desc: "Sesiones grupales de Musicales, Postural y Fitness dirigidas por nuestros especialistas." 
+    desc: "Sesiones grupales de Musicales, Postural, Hidrocinesia y Fitness dirigidas por nuestros especialistas." 
   },
   { 
     icon: <Trophy className="h-8 w-8 text-brand-blue" />, 
@@ -59,7 +62,7 @@ export const FEATURES_DATA: FeatureItem[] = [
   { 
     icon: <Droplets className="h-8 w-8 text-brand-blue" />, 
     title: "Zona de Agua", 
-    desc: "Acceso a instalaciones complementarias para la recuperación y el bienestar." 
+    desc: "Acceso a instalaciones complementarias para la recuperación y actividades acuáticas como Hidrocinesia." 
   },
 ];
 

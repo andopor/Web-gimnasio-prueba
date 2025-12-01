@@ -15,7 +15,7 @@ const Footer: React.FC = () => {
             <div className="flex items-center gap-3 mb-6">
               <div className="h-10 w-10 bg-white/10 rounded-full flex items-center justify-center overflow-hidden border border-brand-blue">
                  <img 
-                  src="https://www.edu.xunta.gal/centros/iesmariasolino/system/files/u1/logo_csaf.png" 
+                  src="https://1drv.ms/i/c/4531d83c907da731/IQD9_wFdE9xdRKaki8nmxeG7AdYfIV_nE_AXcSAl66ORhkI" 
                   alt="CSAF Logo" 
                   className="h-full w-full object-contain p-0.5"
                   onError={(e) => e.currentTarget.style.display = 'none'}
