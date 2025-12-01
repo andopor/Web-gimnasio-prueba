@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { HeartPulse, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { NavLink } from '../types';
 
 const Navbar: React.FC = () => {
@@ -14,7 +14,6 @@ const Navbar: React.FC = () => {
 
       // Active section detection logic
       const sections = Object.values(NavLink);
-      // Offset to account for header height + some buffer
       const scrollPosition = window.scrollY + 100;
 
       for (const section of sections) {
@@ -37,27 +36,42 @@ const Navbar: React.FC = () => {
     { id: NavLink.HOME, label: 'Inicio', href: `#${NavLink.HOME}` },
     { id: NavLink.FACILITIES, label: 'Instalaciones', href: `#${NavLink.FACILITIES}` },
     { id: NavLink.CLASSES, label: 'Clases', href: `#${NavLink.CLASSES}` },
-    { id: NavLink.PRICING, label: 'Planes', href: `#${NavLink.PRICING}` },
+    { id: NavLink.PRICING, label: 'Cuotas', href: `#${NavLink.PRICING}` },
   ];
 
   return (
     <nav 
       className={`fixed w-full z-50 transition-all duration-300 ${
         isScrolled 
-          ? 'bg-slate-900/95 backdrop-blur-md border-b border-slate-800 py-3 shadow-lg' 
-          : 'bg-transparent py-6'
+          ? 'bg-slate-900/95 backdrop-blur-md border-b border-slate-800 py-2 shadow-lg' 
+          : 'bg-transparent py-4'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <a href={`#${NavLink.HOME}`} className="flex items-center gap-2 group cursor-pointer z-50">
-            <div className="bg-lime-400 p-2 rounded-lg group-hover:bg-lime-300 transition-colors shadow-lg shadow-lime-400/20">
-              <HeartPulse className="h-6 w-6 text-slate-900" />
+          <a href={`#${NavLink.HOME}`} className="flex items-center gap-3 group cursor-pointer z-50">
+             {/* Replace src with your local file if needed */}
+             <div className="h-14 w-14 bg-white/10 rounded-full flex items-center justify-center overflow-hidden border-2 border-brand-blue">
+                <img 
+                  src="https://www.edu.xunta.gal/centros/iesmariasolino/system/files/u1/logo_csaf.png" 
+                  alt="CSAF Logo" 
+                  className="h-full w-full object-contain p-1"
+                  onError={(e) => {
+                    e.currentTarget.style.display = 'none';
+                    e.currentTarget.parentElement!.classList.add('bg-brand-blue');
+                    e.currentTarget.parentElement!.innerHTML = '<span class="text-white font-bold text-xs">CSAF</span>';
+                  }}
+                />
+             </div>
+            <div className="flex flex-col">
+              <span className="font-extrabold text-2xl tracking-tighter text-white leading-none">
+                CSAF
+              </span>
+              <span className="text-sm font-medium text-lime-400 tracking-wide">
+                IES MARÍA SOLIÑO
+              </span>
             </div>
-            <span className="font-extrabold text-2xl tracking-tighter text-white">
-              VITALITY<span className="text-lime-400">HUB</span>
-            </span>
           </a>
           
           {/* Desktop Menu */}
@@ -67,15 +81,15 @@ const Navbar: React.FC = () => {
                 <a 
                   key={link.id}
                   href={link.href} 
-                  className={`relative px-4 py-2 text-sm font-bold tracking-wide uppercase transition-all duration-300 rounded-lg hover:text-lime-400 ${
+                  className={`relative px-4 py-2 text-sm font-bold tracking-wide uppercase transition-all duration-300 rounded-lg hover:text-brand-blue ${
                     activeSection === link.id 
-                      ? 'text-lime-400' 
+                      ? 'text-brand-blue' 
                       : 'text-slate-300'
                   }`}
                 >
                   {link.label}
                   {activeSection === link.id && (
-                    <span className="absolute bottom-1 left-4 right-4 h-0.5 bg-lime-400 rounded-full shadow-[0_0_8px_rgba(163,230,53,0.8)] animate-pulse"></span>
+                    <span className="absolute bottom-1 left-4 right-4 h-0.5 bg-brand-blue rounded-full shadow-[0_0_8px_rgba(0,119,182,0.8)] animate-pulse"></span>
                   )}
                 </a>
               ))}
@@ -83,11 +97,11 @@ const Navbar: React.FC = () => {
                 href={`#${NavLink.CONTACT}`} 
                 className={`ml-6 px-6 py-2.5 rounded-full font-bold transition-all shadow-lg ${
                   activeSection === NavLink.CONTACT
-                    ? 'bg-lime-300 text-slate-900 scale-105 shadow-lime-400/40'
-                    : 'bg-lime-400 text-slate-900 hover:bg-lime-300 hover:scale-105 shadow-lime-400/20'
+                    ? 'bg-brand-blue text-white scale-105 shadow-brand-blue/40'
+                    : 'bg-lime-500 text-slate-900 hover:bg-lime-400 hover:scale-105 shadow-lime-500/20'
                 }`}
               >
-                Únete Ahora
+                Contactar
               </a>
             </div>
           </div>
@@ -110,7 +124,7 @@ const Navbar: React.FC = () => {
         className={`md:hidden fixed inset-0 bg-slate-900/95 backdrop-blur-xl transition-all duration-300 ease-in-out ${
           isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
-        style={{ top: '0', paddingTop: '80px' }}
+        style={{ top: '0', paddingTop: '100px' }}
       >
         <div className="px-4 pt-2 pb-6 space-y-2 sm:px-3">
           {navLinks.map((link) => (
@@ -120,8 +134,8 @@ const Navbar: React.FC = () => {
               onClick={() => setIsOpen(false)} 
               className={`block px-3 py-4 rounded-xl text-xl font-bold text-center transition-colors ${
                  activeSection === link.id 
-                   ? 'bg-slate-800 text-lime-400 border border-slate-700' 
-                   : 'text-slate-300 hover:text-lime-400 hover:bg-slate-800'
+                   ? 'bg-slate-800 text-brand-blue border border-slate-700' 
+                   : 'text-slate-300 hover:text-brand-blue hover:bg-slate-800'
               }`}
             >
               {link.label}
@@ -130,9 +144,9 @@ const Navbar: React.FC = () => {
           <a 
             href={`#${NavLink.CONTACT}`} 
             onClick={() => setIsOpen(false)} 
-            className="block px-3 py-4 mt-6 rounded-xl text-xl font-bold text-center bg-lime-400 text-slate-900 hover:bg-lime-300 shadow-lg shadow-lime-400/20"
+            className="block px-3 py-4 mt-6 rounded-xl text-xl font-bold text-center bg-lime-500 text-slate-900 hover:bg-lime-400 shadow-lg shadow-lime-500/20"
           >
-            Únete Ahora
+            Contactar
           </a>
         </div>
       </div>
