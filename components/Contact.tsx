@@ -61,7 +61,7 @@ const Contact: React.FC = () => {
                 <div>
                   <h4 className="text-white font-bold text-xl mb-1">Ubicación</h4>
                   <p className="text-slate-400">Rúa Montecarrasco, 14, Cangas</p>
-                  <a href="https://maps.app.goo.gl/example" target="_blank" rel="noopener noreferrer" className="text-lime-400 text-sm hover:underline mt-1 inline-block">Ver en Google Maps</a>
+                  <a href="https://maps.app.goo.gl/wYTVaigLhVMnqL6h6" target="_blank" rel="noopener noreferrer" className="text-lime-400 text-sm hover:underline mt-1 inline-block">Ver en Google Maps</a>
                 </div>
               </div>
 
@@ -81,7 +81,7 @@ const Contact: React.FC = () => {
                 </div>
                 <div>
                   <h4 className="text-white font-bold text-xl mb-1">Horario Centro</h4>
-                  <p className="text-slate-400">Lunes - Viernes: 08:30 - 21:30</p>
+                  <p className="text-slate-400">Lunes - Viernes: 08:30 - 15:00</p>
                 </div>
               </div>
 
@@ -157,7 +157,7 @@ const Contact: React.FC = () => {
             {/* Google Maps Embed */}
             <div className="rounded-3xl overflow-hidden border border-slate-700 h-64 md:h-80 shadow-2xl relative z-10">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2956.326776182604!2d-8.784666684550787!3d42.26199997919364!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd2f623631023759%3A0x606553258525c34!2sIES%20Mar%C3%ADa%20Soli%C3%B1o!5e0!3m2!1ses!2ses!4v1646845678901!5m2!1ses!2ses"
+                src="https://maps.google.com/maps?q=42.2775266,-8.7914479&hl=es&z=16&output=embed"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}

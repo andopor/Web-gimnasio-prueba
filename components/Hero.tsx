@@ -34,11 +34,7 @@ const Hero: React.FC = () => {
           Clases de Fitness, Musicales, Hidrocinesia y Postural impartidas por profesionales.
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-5 justify-center items-center">
-          <a href="/horario.pdf" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto border border-slate-600 bg-slate-800/50 backdrop-blur-sm text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white/10 hover:border-white transition-all flex items-center justify-center">
-            Ver Horarios
-          </a>
-        </div>
+
 
         <div className="mt-20 grid grid-cols-3 gap-8 border-t border-slate-800/50 pt-8 max-w-3xl mx-auto">
           <div className="text-center group">
@@ -46,12 +42,12 @@ const Hero: React.FC = () => {
             <p className="text-slate-500 text-sm uppercase tracking-wider font-semibold mt-1">Ciclo Superior</p>
           </div>
           <div className="text-center group">
-            <p className="text-3xl md:text-4xl font-black text-white group-hover:text-brand-blue transition-colors">4</p>
-            <p className="text-slate-500 text-sm uppercase tracking-wider font-semibold mt-1">Disciplinas</p>
+            <p className="text-3xl md:text-4xl font-black text-white group-hover:text-brand-blue transition-colors">2</p>
+            <p className="text-slate-500 text-sm uppercase tracking-wider font-semibold mt-1">Cursos</p>
           </div>
           <div className="text-center group">
-            <p className="text-3xl md:text-4xl font-black text-white group-hover:text-brand-blue transition-colors">100%</p>
-            <p className="text-slate-500 text-sm uppercase tracking-wider font-semibold mt-1">Práctico</p>
+            <p className="text-3xl md:text-4xl font-black text-white group-hover:text-brand-blue transition-colors">Formación</p>
+            <p className="text-slate-500 text-sm uppercase tracking-wider font-semibold mt-1">Teórico-práctica</p>
           </div>
         </div>
       </div>

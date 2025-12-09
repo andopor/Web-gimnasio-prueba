@@ -42,7 +42,6 @@ const Navbar: React.FC = () => {
     { id: NavLink.HOME, label: 'Inicio', href: `/#${NavLink.HOME}` },
     { id: NavLink.FACILITIES, label: 'Instalaciones', href: `/#${NavLink.FACILITIES}` },
     { id: NavLink.CLASSES, label: 'Clases', href: `/#${NavLink.CLASSES}` },
-    { id: NavLink.PRICING, label: 'Cuotas', href: `/#${NavLink.PRICING}` },
   ];
 
   const modules = [
@@ -64,18 +63,12 @@ const Navbar: React.FC = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 group cursor-pointer z-50">
             {/* Replace src with your local file if needed */}
-            <div className="h-14 w-14 bg-white/10 rounded-full flex items-center justify-center overflow-hidden border-2 border-brand-blue">
-              <div className="h-10 w-10 bg-white rounded-full flex items-center justify-center overflow-hidden border border-brand-blue group-hover:border-lime-400 transition-colors">
-                <img
-                  src="/logo.png"
-                  alt="CSAF Logo"
-                  className="h-full w-full object-contain p-0.5"
-                />
-              </div>
-            </div>
-            <div className="flex flex-col">
-              <span className="font-extrabold text-xl tracking-tighter text-white group-hover:text-brand-blue transition-colors">CSAF</span>
-              <span className="text-[0.65rem] text-lime-400 font-bold tracking-widest uppercase">IES María Soliño</span>
+            <div className="h-20 w-20 bg-white rounded-full flex items-center justify-center overflow-hidden border-2 border-brand-blue/50 hover:border-brand-blue transition-colors">
+              <img
+                src="/csaf_logo_new.png"
+                alt="CSAF Logo"
+                className="h-full w-full object-contain p-0.5 scale-110"
+              />
             </div>
           </Link>
 

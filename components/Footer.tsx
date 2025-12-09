@@ -9,11 +9,11 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center gap-3 mb-4">
-              <div className="h-10 w-10 bg-white rounded-full flex items-center justify-center overflow-hidden border border-brand-blue">
+              <div className="h-16 w-16 bg-white rounded-full flex items-center justify-center overflow-hidden border border-brand-blue">
                 <img
-                  src="/logo.png"
+                  src="/csaf_logo_new.png"
                   alt="CSAF Logo"
-                  className="h-full w-full object-contain p-0.5"
+                  className="h-full w-full object-contain scale-110"
                 />
               </div>
               <div className="h-10 w-10 bg-white rounded-full flex items-center justify-center overflow-hidden border border-purple-600 ml-2">
@@ -23,9 +23,6 @@ const Footer: React.FC = () => {
                   className="h-full w-full object-contain p-0.5"
                 />
               </div>
-              <h3 className="text-white text-2xl font-black">
-                <span className="font-black text-xl tracking-tighter text-white ml-1">CSAF</span> <span className="text-lime-400">MARÍA SOLIÑO</span>
-              </h3>
             </div>
             <p className="mb-4 max-w-sm">
               Formando a los futuros profesionales del acondicionamiento físico con excelencia, práctica y pasión.
@@ -49,7 +46,6 @@ const Footer: React.FC = () => {
               <li><a href={`#${NavLink.HOME}`} className="hover:text-lime-400 transition-colors">Inicio</a></li>
               <li><a href={`#${NavLink.FACILITIES}`} className="hover:text-lime-400 transition-colors">Instalaciones</a></li>
               <li><a href={`#${NavLink.CLASSES}`} className="hover:text-lime-400 transition-colors">Horarios</a></li>
-              <li><a href={`#${NavLink.PRICING}`} className="hover:text-lime-400 transition-colors">Precios</a></li>
               <li><a href={`#${NavLink.CONTACT}`} className="hover:text-lime-400 transition-colors">Contacto</a></li>
             </ul>
           </div>
