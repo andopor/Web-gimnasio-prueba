@@ -107,7 +107,7 @@ export const MODULES_DATA = {
   fitness: {
     title: "Fitness",
     description: "Desarrolla tu fuerza, resistencia y potencia con nuestro programa integral de fitness. Diseñado para maximizar tu rendimiento físico mediante técnicas avanzadas de entrenamiento y biomecánica aplicada.",
-    image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
+    image: "/facilities/rsp_inertial.jpg",
     color: "brand-blue",
     professor: {
       name: "Roberto",
@@ -131,7 +131,7 @@ export const MODULES_DATA = {
   postural: {
     title: "Postural",
     description: "Recupera el equilibrio natural de tu cuerpo. Nuestro módulo postural combina técnicas de Pilates, Yoga y reeducación funcional para mejorar tu alineación, flexibilidad y salud de espalda.",
-    image: "https://images.unsplash.com/photo-1518611012118-696072aa579a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
+    image: "/facilities/training_wall.jpg",
     color: "lime-400",
     professor: {
       name: "Antonio",
@@ -155,7 +155,7 @@ export const MODULES_DATA = {
   musicales: {
     title: "Musicales",
     description: "¡Muévete al ritmo de la música! Este módulo fusiona ejercicio físico y expresión corporal. Mejora tu coordinación, capacidad cardiovascular y diviértete con nuestras coreografías dinámicas.",
-    image: "https://images.unsplash.com/photo-1524594152303-9fd13543fe6e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
+    image: "/facilities/studio_wide.jpg",
     color: "pink-500",
     professor: {
       name: "Vanessa",
