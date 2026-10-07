@@ -26,7 +26,7 @@ const CycleSchedule: React.FC = () => {
                         HORARIOS DEL <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-lime-400">CURSO</span>
                     </h2>
                     <p className="text-slate-400 max-w-2xl mx-auto text-lg">
-                        Consulta la distribución semanal de las clases teóricas y prácticas para cada ciclo formativo.
+                        Consulta la distribución semanal de las clases teóricas y prácticas para cada ciclo formativo. Horarios actualizados según los documentos del 31/08/2026.
                     </p>
                 </div>
 
@@ -62,31 +62,18 @@ const CycleSchedule: React.FC = () => {
                                 </div>
 
                                 {/* Sessions List */}
-                                <div className="space-y-2 flex-grow">
+                                <div className="relative" style={{ height: `${getDurationInMinutes('08:05', '15:00') * PIXELS_PER_MINUTE}px` }}>
                                     {daySchedule.sessions.map((session, sIndex) => {
                                         const duration = getDurationInMinutes(session.startTime, session.endTime);
                                         const height = duration * PIXELS_PER_MINUTE;
 
-                                        if (session.color === 'invisible') {
-                                            // Render spacer
-                                            return (
-                                                <div
-                                                    key={`${daySchedule.day}-${sIndex}`}
-                                                    className="p-3 opacity-0 pointer-events-none border border-transparent"
-                                                    style={{ height: `${height}px`, minHeight: `${height}px` }}
-                                                    aria-hidden="true"
-                                                >
-                                                    {/* Content hidden but needed for structure? No, explicit height handles it now. */}
-                                                </div>
-                                            );
-                                        }
                                         const isBreak = session.type === 'break';
 
                                         return (
                                             <div
                                                 key={`${daySchedule.day}-${sIndex}`}
-                                                className={`relative ${isBreak ? 'p-1 justify-center' : 'p-3'} rounded-xl border transition-all hover:scale-[1.02] hover:shadow-lg hover:z-10 group ${session.color} ${isBreak ? 'opacity-80' : 'shadow-md'} overflow-hidden flex flex-col`}
-                                                style={{ height: `${height}px`, minHeight: `${height}px` }}
+                                                className={`absolute w-full ${isBreak ? 'p-1 justify-center' : 'p-3'} rounded-xl border transition-all hover:scale-[1.02] hover:shadow-lg hover:z-10 group ${session.color} ${isBreak ? 'opacity-80' : 'shadow-md'} overflow-hidden flex flex-col`}
+                                                style={{ top: `${getDurationInMinutes('08:05', session.startTime) * PIXELS_PER_MINUTE}px`, height: `${height - 4}px` }}
                                             >
                                                 {/* Time */}
                                                 <div className={`flex items-center ${isBreak ? 'text-[10px] justify-center' : 'text-xs'} font-bold font-mono ${isBreak ? 'mb-0' : 'mb-1'} opacity-80 shrink-0`}>
@@ -95,7 +82,7 @@ const CycleSchedule: React.FC = () => {
                                                 </div>
 
                                                 {/* Subject */}
-                                                <div className={`font-extrabold ${isBreak ? 'text-xs text-center' : 'text-sm'} uppercase leading-tight ${isBreak ? 'mb-0' : 'mb-1'} truncate shrink-0`} title={session.subject}>
+                                                <div className={`font-extrabold ${isBreak ? 'text-xs text-center' : 'text-sm'} uppercase leading-tight ${isBreak ? 'mb-0' : 'mb-1'} shrink-0`} title={session.subject}>
                                                     {session.subject}
                                                 </div>
 

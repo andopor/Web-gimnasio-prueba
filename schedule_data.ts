@@ -28,219 +28,126 @@ const COLORS = {
     break: "bg-slate-800/50 text-slate-500 border-slate-700/50 dashed border-2",
 };
 
-// --- Time Slots Definitions ---
+// Source: 1Ciclo.pdf and 2Ciclo.pdf, issued 31/08/2026 at 10:50.
+const session = (startTime: string, endTime: string, subject: string, room: string, teacher: string, color: string): ClassSession => ({
+    startTime, endTime, subject, room, teacher, color, type: 'class'
+});
 
-// Slots for Mon/Wed (Recreos: 11:00-11:20, 13:00-13:20)
-const SLOTS_MW = [
-    { start: "08:05", end: "08:30" },
-    { start: "08:30", end: "09:20" },
-    { start: "09:20", end: "10:10" },
-    { start: "10:10", end: "11:00" },
-    { start: "11:00", end: "11:20", type: 'break', subject: "RECREO" },
-    { start: "11:20", end: "12:10" },
-    { start: "12:10", end: "13:00" },
-    { start: "13:00", end: "13:20", type: 'break', subject: "RECREO" },
-    { start: "13:20", end: "14:10" },
-    { start: "14:10", end: "15:00" }
-];
-
-// Slots for Tue/Thu/Fri (Recreo: 11:00-11:30)
-const SLOTS_TJF = [
-    { start: "08:05", end: "08:30" },
-    { start: "08:30", end: "09:20" },
-    { start: "09:20", end: "10:10" },
-    { start: "10:10", end: "11:00" },
-    { start: "11:00", end: "11:30", type: 'break', subject: "RECREO" },
-    { start: "11:30", end: "12:20" },
-    { start: "12:20", end: "13:10" },
-    { start: "13:10", end: "14:00" }, // Corrected: 50 mins
-    { start: "14:00", end: "14:50" }  // Corrected: 14:00 - 14:50
-];
-
-// Helper to build a session
-const s = (slotIdx: number, isMW: boolean, subject: string, room: string, teacher: string, color: string): ClassSession => {
-    const slot = isMW ? SLOTS_MW[slotIdx] : SLOTS_TJF[slotIdx];
-    return {
-        subject, room, teacher, color,
-        startTime: slot.start,
-        endTime: slot.end,
-        type: 'class'
-    };
-};
-
-const b = (slotIdx: number, isMW: boolean): ClassSession => {
-    const slot = isMW ? SLOTS_MW[slotIdx] : SLOTS_TJF[slotIdx];
-    return {
-        subject: "RECREO", room: "", teacher: "", color: COLORS.break,
-        startTime: slot.start,
-        endTime: slot.end,
-        type: 'break'
-    };
-}
-
-
-
-const empty = (slotIdx: number, isMW: boolean): ClassSession => {
-    const slot = isMW ? SLOTS_MW[slotIdx] : SLOTS_TJF[slotIdx];
-    return {
-        subject: "", room: "", teacher: "", color: "invisible", // invisible class to act as spacer
-        startTime: slot.start,
-        endTime: slot.end,
-        type: 'class'
-    };
-}
-
-
-// --- CYCLE 1 ---
+const recess = (startTime: string, endTime: string): ClassSession => ({
+    startTime, endTime, subject: "RECREO", color: COLORS.break, type: 'break'
+});
 
 export const CYCLE_1_DAYS: DaySchedule[] = [
     {
         day: "Luns",
         sessions: [
-            empty(0, true), // Spacer for 08:05 alignment
-            s(1, true, "IPE 1", "Aula Teórica", "María C", COLORS.orange),
-            s(2, true, "Postura", "Ximnasio", "Antonio", COLORS.pink),
-            s(3, true, "Postura", "Ximnasio", "Antonio", COLORS.pink),
-            b(4, true), // 11:00-11:20
-            s(5, true, "Musicales 1", "Aula Teórica", "Merce", COLORS.brightYellow),
-            s(6, true, "Musicales 1", "Aula Teórica", "Merce", COLORS.brightYellow),
-            b(7, true), // 13:00-13:20
-            s(8, true, "Acuáticas 1", "Piscina", "Roberto", COLORS.cyan),
-            s(9, true, "Acuáticas 1", "Piscina", "Roberto", COLORS.cyan),
+            session("08:30", "10:10", "Valoración da CF", "Aula Ciclo", "Jose F.", COLORS.yellow),
+            session("10:10", "11:00", "Inglés profesional", "Aula Ciclo", "Monserrat L.", COLORS.purple),
+            recess("11:00", "11:20"),
+            session("11:20", "13:00", "Control postural", "Ximnasio", "María P.", COLORS.pink),
+            recess("13:00", "13:20"),
+            session("13:20", "15:00", "Acond. físico aug", "Piscina", "María P.", COLORS.cyan),
         ]
     },
     {
         day: "Martes",
         sessions: [
-            s(0, false, "Valoración", "Aula teórica", "Jose", COLORS.yellow),
-            s(1, false, "Valoración", "Aula teórica", "Jose", COLORS.yellow),
-            s(2, false, "IPE 1", "Aula Teórica", "María C", COLORS.orange),
-            s(3, false, "INGLÉS 1", "Aula Teórica", "Montse", COLORS.purple),
-            b(4, false), // 11:00-11:30
-            s(5, false, "Sustent.", "Aula Teórica", "María P", COLORS.green),
-            s(6, false, "Postura", "Aula teórica", "Antonio", COLORS.pink),
-            s(7, false, "Postura", "Ximnasio", "Antonio", COLORS.pink),
-            s(8, false, "Postura", "Ximnasio", "Antonio", COLORS.pink),
+            session("08:05", "09:20", "Valoración da CF", "Aula Ciclo", "Jose F.", COLORS.yellow),
+            session("09:20", "11:00", "Control postural", "Ximnasio", "María P.", COLORS.pink),
+            recess("11:00", "11:30"),
+            session("11:30", "13:10", "Acond. físico aug", "Aula Ciclo", "María P.", COLORS.cyan),
+            session("13:10", "14:00", "Valoración da CF", "Aula Ciclo", "Jose F.", COLORS.yellow),
+            session("14:00", "14:50", "IPE I", "Aula Ciclo", "José Miguel M.", COLORS.orange),
         ]
     },
     {
         day: "Mércores",
         sessions: [
-            empty(0, true), // Spacer
-            s(1, true, "Valoración", "Aula teórica", "Jose", COLORS.yellow),
-            s(2, true, "Valoración", "Aula teórica", "Jose", COLORS.yellow),
-            s(3, true, "INGLÉS 1", "Aula Teórica", "Montse", COLORS.purple),
-            b(4, true), // 11:00-11:20
-            s(5, true, "Musicales 1", "Ximnasio", "Merce", COLORS.brightYellow),
-            s(6, true, "Musicales 1", "Ximnasio", "Merce", COLORS.brightYellow),
-            b(7, true), // 13:00-13:20
-            s(8, true, "Acuáticas 1", "Piscina", "Roberto", COLORS.cyan),
-            s(9, true, "Acuáticas 1", "Piscina", "Roberto", COLORS.cyan),
+            session("08:30", "09:20", "Sostibilidade", "1.º Bach A", "Roberto L.", COLORS.green),
+            session("09:20", "10:10", "IPE I", "Aula Ciclo", "José Miguel M.", COLORS.orange),
+            session("10:10", "11:00", "Inglés profesional", "Aula Ciclo", "Monserrat L.", COLORS.purple),
+            recess("11:00", "11:20"),
+            session("11:20", "13:00", "Acond. físico musical", "Ximnasio", "Mercedes J.", COLORS.brightYellow),
+            recess("13:00", "13:20"),
+            session("13:20", "15:00", "Acond. físico aug", "Piscina", "María P.", COLORS.cyan),
         ]
     },
     {
         day: "Xoves",
         sessions: [
-            s(0, false, "Valoración", "Aula teórica", "Jose", COLORS.yellow),
-            s(1, false, "Valoración", "Aula teórica", "Jose", COLORS.yellow),
-            s(2, false, "Acuáticas 1", "Aula teórica", "Roberto", COLORS.cyan),
-            s(3, false, "Acuáticas 1", "Aula teórica", "Roberto", COLORS.cyan),
-            b(4, false), // 11:00-11:30
-            s(5, false, "Valoración", "Ximnasio", "Jose", COLORS.yellow),
-            s(6, false, "Valoración", "Ximnasio", "Jose", COLORS.yellow),
-            s(7, false, "Postura", "Ximnasio", "Antonio", COLORS.pink),
-            s(8, false, "Postura", "Ximnasio", "Antonio", COLORS.pink),
+            session("08:05", "09:20", "Valoración da CF", "Aula Ciclo", "Jose F.", COLORS.yellow),
+            session("09:20", "11:00", "Valoración da CF", "Ximnasio", "Jose F.", COLORS.yellow),
+            recess("11:00", "11:30"),
+            session("11:30", "13:10", "Control postural", "Ximnasio", "María P.", COLORS.pink),
+            session("13:10", "14:50", "IPE I", "Aula Ciclo", "José Miguel M.", COLORS.orange),
         ]
     },
     {
         day: "Venres",
         sessions: [
-            empty(0, false), // Spacer
-            s(1, false, "Valoración", "Aula teórica", "Jose", COLORS.yellow),
-            s(2, false, "Musicales 1", "Ximnasio", "Merce", COLORS.brightYellow),
-            s(3, false, "Musicales 1", "Ximnasio", "Merce", COLORS.brightYellow),
-            b(4, false), // 11:00-11:30
-            s(5, false, "IPE 1", "Aula Teórica", "María C", COLORS.orange),
-            s(6, false, "IPE 1", "Aula Teórica", "María C", COLORS.orange),
-            s(7, false, "Acuáticas 1", "Piscina", "Roberto", COLORS.cyan),
-            s(8, false, "Acuáticas 1", "Piscina", "Roberto", COLORS.cyan),
+            session("08:30", "11:00", "Acond. físico musical", "Ximnasio", "Mercedes J.", COLORS.brightYellow),
+            recess("11:00", "11:30"),
+            session("11:30", "12:20", "Acond. físico musical", "Aula Ciclo", "Mercedes J.", COLORS.brightYellow),
+            session("12:20", "13:10", "Control postural", "Aula Ciclo", "María P.", COLORS.pink),
+            session("13:10", "14:50", "Acond. físico aug", "Piscina", "María P.", COLORS.cyan),
         ]
-    }
+    },
 ];
-
-// --- CYCLE 2 ---
 
 export const CYCLE_2_DAYS: DaySchedule[] = [
     {
         day: "Luns",
         sessions: [
-            empty(0, true), // Spacer
-            s(1, true, "DIXITAL", "Aula Teórica", "Antonio", COLORS.gray),
-            s(2, true, "Fitness", "Aula Teórica", "Roberto", COLORS.lightOrange),
-            s(3, true, "Fitness", "Aula Teórica", "Roberto", COLORS.lightOrange),
-            b(4, true), // 11:00-11:20
-            s(5, true, "Fitness", "Ximnasio", "Roberto", COLORS.lightOrange),
-            s(6, true, "Fitness", "Ximnasio", "Roberto", COLORS.lightOrange),
-            b(7, true), // 13:00-13:20
-            s(8, true, "Musicales 2", "Ximnasio", "Vanessa", COLORS.brightYellow),
-            s(9, true, "Musicales 2", "Ximnasio", "Vanessa", COLORS.brightYellow),
+            session("08:30", "09:20", "IPE II", "Aula Desdobre 16A", "José Miguel M.", COLORS.orange),
+            session("09:20", "11:00", "Habilidades sociais", "Ximnasio", "Vanessa R.", COLORS.blue),
+            recess("11:00", "11:20"),
+            session("11:20", "13:00", "Hidrocinesia", "Aula Ciclo", "Mercedes J.", COLORS.pink),
+            recess("13:00", "13:20"),
+            session("13:20", "15:00", "Act. acond. soporte musical", "Ximnasio", "Vanessa R.", COLORS.brightYellow),
         ]
     },
     {
         day: "Martes",
         sessions: [
-            s(0, false, "Fitness", "Ximnasio", "Roberto", COLORS.lightOrange),
-            s(1, false, "Fitness", "Ximnasio", "Roberto", COLORS.lightOrange),
-            s(2, false, "HHSS", "Ximnasio", "Vanessa", COLORS.blue),
-            s(3, false, "HHSS", "Ximnasio", "Vanessa", COLORS.blue),
-            b(4, false), // 11:00-11:30
-            s(5, false, "Fitness", "Ximnasio", "Roberto", COLORS.lightOrange),
-            s(6, false, "Fitness", "Ximnasio", "Roberto", COLORS.lightOrange),
-            s(7, false, "Hidrocinesia", "Piscina", "Merce", COLORS.pink),
-            s(8, false, "Hidrocinesia", "Piscina", "Merce", COLORS.pink),
+            session("08:05", "09:20", "Fitness", "Ximnasio", "Roberto L.", COLORS.lightOrange),
+            session("09:20", "10:10", "Habilidades en inglés", "Aula Ciclo", "Monserrat L.", COLORS.purple),
+            session("10:10", "11:00", "Act. acond. soporte musical", "Aula Ciclo", "Vanessa R.", COLORS.brightYellow),
+            recess("11:00", "11:30"),
+            session("11:30", "13:10", "Act. acond. soporte musical", "Ximnasio", "Vanessa R.", COLORS.brightYellow),
+            session("13:10", "14:50", "Hidrocinesia", "Piscina", "Mercedes J.", COLORS.pink),
         ]
     },
     {
         day: "Mércores",
         sessions: [
-            empty(0, true), // Spacer
-            s(1, true, "HHSS", "Ximnasio", "Vanessa", COLORS.blue),
-            s(2, true, "Musicales 2", "Ximnasio", "Vanessa", COLORS.brightYellow),
-            s(3, true, "Musicales 2", "Ximnasio", "Vanessa", COLORS.brightYellow),
-            b(4, true), // 11:00-11:20
-            s(5, true, "Fitness", "Aula Teórica", "Roberto", COLORS.lightOrange),
-            s(6, true, "Fitness", "Aula Teórica", "Roberto", COLORS.lightOrange),
-            b(7, true), // 13:00-13:20
-            s(8, true, "Hidrocinesia", "Aula Teórica", "Merce", COLORS.pink),
-            s(9, true, "Hidrocinesia", "Aula Teórica", "Merce", COLORS.pink),
+            session("08:30", "09:20", "IPE II", "Aula Ciclo", "José Miguel M.", COLORS.orange),
+            session("09:20", "11:00", "Fitness", "Ximnasio", "Roberto L.", COLORS.lightOrange),
+            recess("11:00", "11:20"),
+            session("11:20", "12:10", "Habilidades sociais", "Aula Ciclo", "Vanessa R.", COLORS.blue),
+            session("12:10", "13:00", "Competencias profesionais", "Aula Ciclo", "Roberto L.", COLORS.green),
+            recess("13:00", "13:20"),
+            session("13:20", "15:00", "Act. acond. soporte musical", "Ximnasio", "Vanessa R.", COLORS.brightYellow),
         ]
     },
     {
         day: "Xoves",
         sessions: [
-            s(0, false, "Fitness", "Ximnasio", "Roberto", COLORS.lightOrange),
-            s(1, false, "Fitness", "Ximnasio", "Roberto", COLORS.lightOrange),
-            s(2, false, "IPE 2", "Aula Teórica", "María C", COLORS.orange),
-            s(3, false, "IPE 2", "Aula Teórica", "María C", COLORS.orange),
-            b(4, false), // 11:00-11:30
-            s(5, false, "INGLÉS 2", "Aula Teórica", "Montse", COLORS.purple),
-            s(6, false, "HHSS", "Aula teórica", "Vanessa", COLORS.blue),
-            s(7, false, "Hidrocinesia", "Piscina", "Merce", COLORS.pink),
-            s(8, false, "Hidrocinesia", "Piscina", "Merce", COLORS.pink),
+            session("08:05", "09:20", "Fitness", "Ximnasio", "Roberto L.", COLORS.lightOrange),
+            session("09:20", "11:00", "Fitness", "Aula Ciclo", "Roberto L.", COLORS.lightOrange),
+            recess("11:00", "11:30"),
+            session("11:30", "12:20", "Habilidades en inglés", "Aula Ciclo", "Monserrat L.", COLORS.purple),
+            session("12:20", "13:10", "Habilidades sociais", "Aula Ciclo", "Vanessa R.", COLORS.blue),
+            session("13:10", "14:50", "Hidrocinesia", "Piscina", "Mercedes J.", COLORS.pink),
         ]
     },
     {
         day: "Venres",
         sessions: [
-            empty(0, false), // Spacer
-            s(1, false, "COMP PROF", "1BAC D", "Vanessa", COLORS.pink),
-            s(2, false, "HHSS", "Aula Teórica", "Vanessa", COLORS.blue),
-            s(3, false, "HHSS", "Aula Teórica", "Vanessa", COLORS.blue),
-            b(4, false), // 11:00-11:30
-            s(5, false, "Musicales 2", "Ximnasio", "Vanessa", COLORS.brightYellow),
-            s(6, false, "Musicales 2", "Ximnasio", "Vanessa", COLORS.brightYellow),
-            s(7, false, "Musicales 2", "Ximnasio", "Vanessa", COLORS.brightYellow),
-            s(8, false, "INGLÉS 2", "Aula Teórica", "Montse", COLORS.purple),
+            session("08:30", "09:20", "Dixitalización s.p.", "Aula Ciclo", "Alejandro O.", COLORS.gray),
+            session("09:20", "11:00", "Habilidades sociais", "Aula Ciclo", "Vanessa R.", COLORS.blue),
+            recess("11:00", "11:30"),
+            session("11:30", "13:10", "Fitness", "Ximnasio", "Roberto L.", COLORS.lightOrange),
+            session("13:10", "14:50", "Fitness", "Aula Ciclo", "Roberto L.", COLORS.lightOrange),
         ]
-    }
+    },
 ];
