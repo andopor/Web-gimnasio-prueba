@@ -15,17 +15,10 @@ export interface DaySchedule {
 }
 
 const COLORS = {
-    yellow: "bg-yellow-400 text-slate-900 border-yellow-500",
-    orange: "bg-orange-400 text-slate-900 border-orange-500",
-    pink: "bg-pink-300 text-slate-900 border-pink-400",
-    purple: "bg-purple-300 text-slate-900 border-purple-400",
-    cyan: "bg-cyan-400 text-slate-900 border-cyan-500",
-    green: "bg-lime-300 text-slate-900 border-lime-400",
-    blue: "bg-blue-300 text-slate-900 border-blue-400",
-    gray: "bg-slate-200 text-slate-900 border-slate-300",
-    lightOrange: "bg-orange-200 text-slate-900 border-orange-300",
-    brightYellow: "bg-yellow-300 text-slate-900 border-yellow-400",
-    break: "bg-slate-800/50 text-slate-500 border-slate-700/50 dashed border-2",
+    yellow: 'session-yellow', orange: 'session-orange', pink: 'session-pink',
+    purple: 'session-purple', cyan: 'session-cyan', green: 'session-green',
+    blue: 'session-blue', gray: 'session-gray', lightOrange: 'session-orange',
+    brightYellow: 'session-yellow', break: 'session-break',
 };
 
 // Source: 1Ciclo.pdf and 2Ciclo.pdf, issued 31/08/2026 at 10:50.

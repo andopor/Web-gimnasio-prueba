@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth scroll-pt-24">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
+    <meta name="theme-color" content="#101f30" />
+    <link rel="icon" type="image/svg+xml" href="/csaf-logo.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CSAF - IES María Soliño | Formación Profesional y Fitness</title>
     <meta name="description" content="CSAF en IES María Soliño: Ciclo Superior de Acondicionamiento Físico. Módulos, currículos oficiales y horarios del ciclo en Cangas." />
@@ -10,71 +12,22 @@
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://csaf-mariasolino.com/" />
+    <meta property="og:url" content="https://web-gimnasio-prueba.vercel.app/" />
     <meta property="og:title" content="CSAF - IES María Soliño | Formación Profesional y Fitness" />
     <meta property="og:description" content="Consulta los módulos y horarios del Ciclo Superior de Acondicionamiento Físico del IES María Soliño." />
     <meta property="og:image" content="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80" />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://csaf-mariasolino.com/" />
+    <meta property="twitter:url" content="https://web-gimnasio-prueba.vercel.app/" />
     <meta property="twitter:title" content="CSAF - IES María Soliño | Formación Profesional y Fitness" />
     <meta property="twitter:description" content="Consulta los módulos y horarios del Ciclo Superior de Acondicionamiento Físico del IES María Soliño." />
     <meta property="twitter:image" content="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80" />
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              sans: ['Inter', 'sans-serif'],
-            },
-            colors: {
-              brand: {
-                dark: '#0f172a',
-                primary: '#84cc16', // lime-500
-                accent: '#a3e635', // lime-400
-                blue: '#0077b6', // CSAF Blue
-              }
-            }
-          }
-        }
-      }
-    </script>
-    <style>
-      /* Custom scrollbar for webkit */
-      ::-webkit-scrollbar {
-        width: 8px;
-        height: 8px;
-      }
-      ::-webkit-scrollbar-track {
-        background: #0f172a; 
-      }
-      ::-webkit-scrollbar-thumb {
-        background: #334155; 
-        border-radius: 4px;
-      }
-      ::-webkit-scrollbar-thumb:hover {
-        background: #0077b6; 
-      }
-    </style>
-<script type="importmap">
-{
-  "imports": {
-    "react": "https://aistudiocdn.com/react@^19.2.0",
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
-    "react/": "https://aistudiocdn.com/react@^19.2.0/",
-    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0",
-    "vite": "https://aistudiocdn.com/vite@^7.2.4",
-    "@vitejs/plugin-react": "https://aistudiocdn.com/@vitejs/plugin-react@^5.1.1"
-  }
-}
-</script>
 </head>
-  <body class="bg-slate-900 text-slate-200 antialiased">
+  <body>
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
   </body>

@@ -1,58 +1,18 @@
-import React from 'react';
-import { NavLink } from '../types';
+import { Link } from 'react-router-dom';
+import { ArrowRight, ArrowDown } from 'lucide-react';
 
-const Hero: React.FC = () => {
-  return (
-    <section id={NavLink.HOME} className="relative min-h-screen flex items-center justify-center bg-slate-900 overflow-hidden">
-      {/* Background with overlay */}
-      <div className="absolute inset-0 z-0 select-none">
-        <img
-          src="/facilities/studio_wide.jpg"
-          alt="CSAF Gym Background"
-          className="w-full h-full object-cover opacity-50 scale-105 animate-[pulse_10s_ease-in-out_infinite_alternate]"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-slate-900/30"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-900/80 via-transparent to-slate-900/80"></div>
+export default function Hero() {
+  return <section id="home" className="hero">
+    <div className="container hero-grid">
+      <div className="hero-copy">
+        <p className="eyebrow"><span className="status-dot" /> Formación profesional · Cangas</p>
+        <h1>El movimiento.<br /><span>Tu profesión.</span></h1>
+        <p className="hero-description">Ciclo Superior de Acondicionamiento Físico en el IES María Soliño. Conoce los módulos, los espacios de práctica y los horarios del CSAF.</p>
+        <div className="button-row"><Link className="button" to="/modulos">Explorar el ciclo <ArrowRight size={18} aria-hidden="true" /></Link><Link className="text-link" to="/#classes">Ver horarios <ArrowDown size={16} aria-hidden="true" /></Link></div>
+        <dl className="hero-facts"><div><dt>02</dt><dd>Cursos</dd></div><div><dt>16</dt><dd>Módulos</dd></div><div><dt>FP</dt><dd>Grado superior</dd></div></dl>
       </div>
-
-      <div className="relative z-10 text-center px-4 max-w-5xl mx-auto pt-20">
-        <div className="inline-block mb-6">
-          <span className="text-lime-400 font-bold tracking-[0.2em] text-sm md:text-base uppercase py-1 px-3 border border-lime-400/30 rounded-full bg-lime-400/10 backdrop-blur-sm animate-fade-in-up">
-            IES María Soliño
-          </span>
-        </div>
-
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-white mb-8 leading-tight tracking-tight">
-          CSAF <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-emerald-400 drop-shadow-2xl">
-            MARÍA SOLIÑO
-          </span>
-        </h1>
-
-        <p className="text-slate-300 text-lg md:text-xl mb-10 max-w-2xl mx-auto leading-relaxed">
-          Formación profesional y acondicionamiento físico.
-          Clases de Fitness, Musicales, Hidrocinesia y Postural impartidas por profesionales.
-        </p>
-
-
-
-        <div className="mt-20 grid grid-cols-3 gap-8 border-t border-slate-800/50 pt-8 max-w-3xl mx-auto">
-          <div className="text-center group">
-            <p className="text-3xl md:text-4xl font-black text-white group-hover:text-brand-blue transition-colors">FP</p>
-            <p className="text-slate-500 text-sm uppercase tracking-wider font-semibold mt-1">Ciclo Superior</p>
-          </div>
-          <div className="text-center group">
-            <p className="text-3xl md:text-4xl font-black text-white group-hover:text-brand-blue transition-colors">2</p>
-            <p className="text-slate-500 text-sm uppercase tracking-wider font-semibold mt-1">Cursos</p>
-          </div>
-          <div className="text-center group">
-            <p className="text-3xl md:text-4xl font-black text-white group-hover:text-brand-blue transition-colors">Formación</p>
-            <p className="text-slate-500 text-sm uppercase tracking-wider font-semibold mt-1">Teórico-práctica</p>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
-
-export default Hero;
+      <figure className="hero-image"><img src="/facilities/studio_wide.jpg" width="1200" height="900" alt="Sala principal de acondicionamiento físico del CSAF" fetchPriority="high" /><figcaption><span>01 / Espacios de práctica</span><strong>Aprender en movimiento.</strong></figcaption><div className="hero-logo"><img src="/csaf-logo.svg" alt="CSAF" width="100" height="100" /></div></figure>
+    </div>
+    <div className="container hero-bottom"><span>CSAF / IES MARÍA SOLIÑO</span><span>Acondicionamiento físico <ArrowDown size={14} aria-hidden="true" /></span></div>
+  </section>;
+}

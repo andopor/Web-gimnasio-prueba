@@ -1,77 +1,12 @@
-import React from 'react';
-import { NavLink } from '../types';
-import { FEATURES_DATA } from '../constants';
-
-const Features: React.FC = () => {
-  return (
-    <section id={NavLink.FACILITIES} className="py-24 bg-slate-900 relative">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-lime-900/20 via-slate-900 to-slate-900 pointer-events-none"></div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-20">
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">Instalaciones de Clase Mundial</h2>
-          <p className="text-slate-400 max-w-2xl mx-auto text-lg">
-            Diseñamos cada espacio pensando en tu rendimiento y comodidad. Desde la entrada hasta el vestuario, cada detalle respira excelencia.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {FEATURES_DATA.map((feature, index) => (
-            <div
-              key={index}
-              className="bg-slate-800/50 backdrop-blur-sm p-8 rounded-2xl hover:bg-slate-800 transition-all duration-300 border border-slate-700/50 hover:border-lime-400/50 group hover:-translate-y-2 shadow-lg"
-            >
-              <div className="bg-slate-900 p-4 rounded-xl inline-block mb-6 shadow-inner group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
-                {feature.icon}
-              </div>
-              <h3 className="text-xl font-bold text-white mb-3 group-hover:text-lime-400 transition-colors">
-                {feature.title}
-              </h3>
-              <p className="text-slate-400 leading-relaxed">
-                {feature.desc}
-              </p>
-            </div>
-          ))}
-        </div>
-
-        {/* Image Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-20 h-96">
-          <div className="md:col-span-2 h-full rounded-2xl overflow-hidden relative group">
-            <img
-              src="/facilities/studio_wide.jpg"
-              alt="Sala Principal CSAF"
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent flex items-end p-8">
-              <span className="text-white font-bold text-xl">Sala Principal</span>
-            </div>
-          </div>
-          <div className="h-full grid grid-rows-2 gap-4">
-            <div className="rounded-2xl overflow-hidden relative group">
-              <img
-                src="/facilities/rsp_inertial.jpg"
-                alt="Tecnología Inercial RSP"
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent flex items-end p-6">
-                <span className="text-white font-bold">Tecnología Inercial</span>
-              </div>
-            </div>
-            <div className="rounded-2xl overflow-hidden relative group">
-              <img
-                src="/facilities/training_wall.jpg"
-                alt="Training Wall"
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent flex items-end p-6">
-                <span className="text-white font-bold">Training Wall</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
-
-export default Features;
+import SectionHeading from './SectionHeading';
+const spaces = [
+  { image: '/facilities/studio_wide.jpg', title: 'Sala principal', label: 'Movimiento y práctica', alt: 'Sala principal del CSAF' },
+  { image: '/facilities/rsp_inertial.jpg', title: 'Tecnología inercial', label: 'Equipamiento RSP', alt: 'Equipo de entrenamiento inercial RSP' },
+  { image: '/facilities/training_wall.jpg', title: 'Training Wall', label: 'Trabajo funcional', alt: 'Equipamiento Training Wall del CSAF' },
+];
+export default function Features() {
+  return <section id="facilities" className="section section-light"><div className="container">
+    <SectionHeading eyebrow="01 / Instalaciones" title="Espacios para ponerlo en práctica." description="Una mirada a las instalaciones y al equipamiento del CSAF." />
+    <div className="spaces-grid">{spaces.map((space, index) => <figure className="space-card" key={space.title}><div className="space-image"><img src={space.image} alt={space.alt} loading="lazy" width="800" height="600" /></div><figcaption><div><span className="eyebrow">{space.label}</span><h3>{space.title}</h3></div><span className="space-number">0{index + 1}</span></figcaption></figure>)}</div>
+  </div></section>;
+}
