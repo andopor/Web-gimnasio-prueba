@@ -43,10 +43,10 @@ const Footer: React.FC = () => {
           <div>
             <h4 className="text-white font-bold mb-4 uppercase tracking-wider text-sm">Enlaces Rápidos</h4>
             <ul className="space-y-2">
-              <li><a href={`#${NavLink.HOME}`} className="hover:text-lime-400 transition-colors">Inicio</a></li>
-              <li><a href={`#${NavLink.FACILITIES}`} className="hover:text-lime-400 transition-colors">Instalaciones</a></li>
-              <li><a href={`#${NavLink.CLASSES}`} className="hover:text-lime-400 transition-colors">Horarios</a></li>
-              <li><a href={`#${NavLink.CONTACT}`} className="hover:text-lime-400 transition-colors">Contacto</a></li>
+              <li><a href={`/#${NavLink.HOME}`} className="hover:text-lime-400 transition-colors">Inicio</a></li>
+              <li><a href={`/#${NavLink.FACILITIES}`} className="hover:text-lime-400 transition-colors">Instalaciones</a></li>
+              <li><a href={`/#${NavLink.CLASSES}`} className="hover:text-lime-400 transition-colors">Horarios</a></li>
+              <li><a href={`/#${NavLink.CONTACT}`} className="hover:text-lime-400 transition-colors">Contacto</a></li>
             </ul>
           </div>
 

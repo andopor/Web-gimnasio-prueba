@@ -1,104 +1,48 @@
 import React from 'react';
-import { ArrowLeft, CheckCircle, Star } from 'lucide-react';
-import { NavLink as RouterNavLink, Link } from 'react-router-dom';
+import { ArrowLeft, CheckCircle, ExternalLink } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
+import { ModuleInfo } from '../module_data';
 
-interface ModuleLandingProps {
-    title: string;
-    description: string;
-    image: string;
-    professor: {
-        name: string;
-        role: string;
-        qualities: string[];
-        image?: string;
-    };
-    curriculum: string[];
-    color: string;
-}
+const ModuleLanding: React.FC<ModuleInfo> = ({ title, description, code, course, curriculum, sources, note }) => {
+    const { pathname } = useLocation();
+    React.useEffect(() => { window.scrollTo(0, 0); }, [pathname]);
 
-const ModuleLanding: React.FC<ModuleLandingProps> = ({
-    title,
-    description,
-    image,
-    professor,
-    curriculum,
-    color
-}) => {
     return (
-        <div className="min-h-screen bg-slate-900 text-slate-200 pt-20">
-            {/* Hero Section */}
-            <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
-                <div className="absolute inset-0 z-0">
-                    <img src={image} alt={title} className="w-full h-full object-cover opacity-40" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent"></div>
-                </div>
-
-                <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
-                    <Link to="/" className="inline-flex items-center text-lime-400 hover:text-lime-300 mb-6 font-bold transition-colors">
-                        <ArrowLeft className="mr-2 h-5 w-5" /> Volver al Inicio
-                    </Link>
-                    <h1 className="text-5xl md:text-7xl font-black text-white mb-6 tracking-tight">
-                        Módulo <span className={`text-${color}`}>{title}</span>
-                    </h1>
-                    <p className="text-xl md:text-2xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
-                        {description}
-                    </p>
-                </div>
-            </section>
-
-            {/* Professor Section */}
-            <section className="py-20 bg-slate-800/50">
-                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="flex flex-col md:flex-row items-center gap-12">
-                        <div className="w-full md:w-1/3">
-                            <div className={`aspect-square rounded-3xl overflow-hidden border-4 border-${color} shadow-2xl relative group`}>
-                                <img
-                                    src={professor.image || "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"}
-                                    alt={professor.name}
-                                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent flex items-end p-6">
-                                    <div>
-                                        <h3 className="text-2xl font-bold text-white">{professor.name}</h3>
-                                        <p className={`text-${color} font-medium`}>{professor.role}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="w-full md:w-2/3">
-                            <h2 className="text-3xl font-bold text-white mb-6">Conoce a tu Profesor</h2>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                {professor.qualities.map((quality, idx) => (
-                                    <div key={idx} className="bg-slate-900 p-4 rounded-xl border border-slate-700 flex items-start gap-3">
-                                        <Star className={`h-6 w-6 text-${color} flex-shrink-0`} />
-                                        <span className="text-slate-300">{quality}</span>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* Curriculum Section */}
-            <section className="py-20 bg-slate-900">
-                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="text-center mb-12">
-                        <h2 className="text-3xl font-bold text-white mb-4">¿Qué aprenderás?</h2>
-                        <p className="text-slate-400">Competencias clave que desarrollarás en este módulo.</p>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        {curriculum.map((item, idx) => (
-                            <div key={idx} className="flex items-start gap-4 p-4 rounded-xl hover:bg-slate-800/50 transition-colors">
-                                <CheckCircle className={`h-6 w-6 text-${color} flex-shrink-0 mt-1`} />
-                                <p className="text-slate-300 text-lg">{item}</p>
-                            </div>
+        <article className="min-h-screen bg-slate-900 text-slate-200 pt-36 pb-20">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <Link to="/modulos" className="inline-flex items-center text-lime-400 hover:text-lime-300 mb-8 font-bold">
+                    <ArrowLeft className="mr-2 h-5 w-5" aria-hidden="true" /> Todos los módulos
+                </Link>
+                <p className="text-brand-blue font-bold tracking-widest uppercase mb-4">{course}.º curso · {code}</p>
+                <h1 className="text-3xl md:text-5xl font-black text-white leading-tight mb-6">{title}</h1>
+                <p className="text-xl text-slate-300 leading-relaxed mb-12">{description}</p>
+                <section aria-labelledby="curriculum-heading" className="bg-slate-800/50 border border-slate-700 rounded-2xl p-6 sm:p-8 mb-8">
+                    <h2 id="curriculum-heading" className="text-2xl font-bold text-white mb-3">Qué se trabaja</h2>
+                    <p className="text-slate-400 mb-6">Resumen de los contenidos y resultados de aprendizaje del currículo.</p>
+                    <ul className="space-y-5">
+                        {curriculum.map(item => (
+                            <li key={item} className="flex items-start gap-3">
+                                <CheckCircle className="h-5 w-5 text-lime-400 shrink-0 mt-1" aria-hidden="true" />
+                                <span className="text-lg leading-relaxed">{item}</span>
+                            </li>
                         ))}
-                    </div>
-                </div>
-            </section>
-        </div>
+                    </ul>
+                    {note && <p className="text-slate-400 mt-6 leading-relaxed">{note}</p>}
+                </section>
+                <section aria-labelledby="sources-heading">
+                    <h2 id="sources-heading" className="text-xl font-bold text-white mb-4">Referencias curriculares</h2>
+                    <ul className="space-y-4">
+                        {sources.map(source => (
+                            <li key={source.url}>
+                                <a href={source.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-start gap-2 text-brand-blue hover:text-lime-400 underline underline-offset-4">
+                                    <span>{source.label}</span><ExternalLink className="h-4 w-4 shrink-0 mt-1" aria-hidden="true" />
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
+                </section>
+            </div>
+        </article>
     );
 };
 

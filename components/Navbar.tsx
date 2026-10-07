@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { NavLink } from '../types';
 import { Link, useLocation } from 'react-router-dom';
+import { MODULES } from '../module_data';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -44,12 +45,7 @@ const Navbar: React.FC = () => {
     { id: NavLink.CLASSES, label: 'Clases', href: `/#${NavLink.CLASSES}` },
   ];
 
-  const modules = [
-    { name: 'Fitness', path: '/fitness' },
-    { name: 'Postural', path: '/postural' },
-    { name: 'Musicales', path: '/musicales' },
-    { name: 'Hidrocinesia', path: '/hidrocinesia' },
-  ];
+  const modules = MODULES.map(module => ({ name: module.shortTitle, path: `/${module.slug}` }));
 
   return (
     <nav
@@ -95,21 +91,24 @@ const Navbar: React.FC = () => {
               <div className="relative group">
                 <button
                   className="flex items-center gap-1 px-4 py-2 text-sm font-bold tracking-wide uppercase text-slate-300 hover:text-brand-blue transition-colors"
-                  onMouseEnter={() => setIsModulesOpen(true)}
-                  onMouseLeave={() => setIsModulesOpen(false)}
+                  onClick={() => setIsModulesOpen(value => !value)}
+                  aria-expanded={isModulesOpen}
+                  aria-controls="modules-menu"
                 >
                   Módulos <ChevronDown className="h-4 w-4" />
                 </button>
 
                 <div
-                  className={`absolute top-full left-0 w-48 bg-slate-900 border border-slate-800 rounded-xl shadow-xl overflow-hidden transition-all duration-300 transform origin-top ${isModulesOpen ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 -translate-y-2 pointer-events-none'}`}
-                  onMouseEnter={() => setIsModulesOpen(true)}
-                  onMouseLeave={() => setIsModulesOpen(false)}
+                  id="modules-menu"
+                  hidden={!isModulesOpen}
+                  className={`absolute top-full right-0 w-80 max-h-[70vh] overflow-y-auto bg-slate-900 border border-slate-800 rounded-xl shadow-xl transition-all duration-300 transform origin-top ${isModulesOpen ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 -translate-y-2 pointer-events-none'}`}
                 >
+                  <Link to="/modulos" onClick={() => setIsModulesOpen(false)} className="block px-4 py-3 text-lime-400 font-bold border-b border-slate-700">Todos los módulos</Link>
                   {modules.map((module) => (
                     <Link
                       key={module.path}
                       to={module.path}
+                      onClick={() => setIsModulesOpen(false)}
                       className="block px-4 py-3 text-slate-300 hover:bg-slate-800 hover:text-lime-400 transition-colors border-b border-slate-800/50 last:border-0"
                     >
                       {module.name}
@@ -165,7 +164,7 @@ const Navbar: React.FC = () => {
           ))}
 
           <div className="py-4 border-t border-slate-800 mt-4">
-            <p className="text-center text-slate-500 text-sm uppercase tracking-widest font-bold mb-4">Módulos</p>
+            <Link to="/modulos" onClick={() => setIsOpen(false)} className="block text-center text-lime-400 font-bold mb-4">Todos los módulos</Link>
             <div className="grid grid-cols-2 gap-3">
               {modules.map((module) => (
                 <Link
